@@ -45,7 +45,7 @@ The package provides by default a Facade for Laravel application. You can call m
 ```php
 use Anthonypauwels\DataLayer\Laravel\DataLayer;
 
-DataLayer::title( 'Website title' );
+DataLayer::push('foo', 'bar');
 ```
 
 ## API documentation
@@ -127,6 +127,54 @@ It will just print this :
 <script>
     dataLayer.push({foo:'bar',user_name:'John Doe',age:42,country:'Belgium'});
 </script>
+```
+
+#### Blade directives
+
+If you use DataLayerHandler with Laravel, you can use custom Blade directives to insert codes into the view without using the facade directly :
+
+```blade
+@datalayerInit()
+
+instead of
+
+{{ DataLayer::init() }}
+```
+
+```blade
+@datalayerScript()
+
+instead of
+
+{{ DataLayer::script() }}
+```
+
+```blade
+@datalayerNoScript()
+
+instead of
+
+{{ DataLayer::noScript() }}
+```
+
+```blade
+@datalayerPublish()
+
+instead of
+
+{{ DataLayer::publish() }}
+```
+
+```blade
+@datalayerPush([
+    'user_name' => 'John Doe',
+])
+
+instead of
+
+{{ DataLayer::pushData([
+    'user_name' => 'John Doe',
+]) }}
 ```
 
 The DataLayer is cleared after each call to the DataLayer::publish() method except if the option `clear` is set to `false`.
@@ -214,54 +262,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 ```php
 DataLayer::dd();
-```
-
-### Blade directives
-
-If you use DataLayerHandler with Laravel, you can use custom Blade directives to insert codes into the view without using the facade directly :
-
-```blade
-@datalayerInit()
-
-instead of
-
-{{ DataLayer::init() }}
-```
-
-```blade
-@datalayerScript()
-
-instead of
-
-{{ DataLayer::script() }}
-```
-
-```blade
-@datalayerNoScript()
-
-instead of
-
-{{ DataLayer::noScript() }}
-```
-
-```blade
-@datalayerPublish()
-
-instead of
-
-{{ DataLayer::publish() }}
-```
-
-```blade
-@datalayerPush([
-    'user_name' => 'John Doe',
-])
-
-instead of
-
-{{ DataLayer::pushData([
-    'user_name' => 'John Doe',
-]) }}
 ```
 
 ### Requirement
