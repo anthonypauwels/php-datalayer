@@ -1,0 +1,38 @@
+{
+    "name": "anthonypauwels/datalayer",
+    "type": "library",
+    "description": "A helper package that help to generate Google's DataLayer script on pages",
+    "keywords": [
+        "datalayer",
+        "tags",
+        "google",
+        "gtm",
+        "helper"
+    ],
+    "authors": [
+        {
+            "name": "Anthony Pauwels",
+            "email": "hello@anthonypauwels.be",
+            "homepage": "https://anthonypauwels.be/"
+        }
+    ],
+    "require": {
+        "php": "^8.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Anthonypauwels\\DataLayer\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Anthonypauwels\\DataLayer\\Laravel\\ServiceProvider"
+            ],
+            "aliases": {
+                "DataLayer": "Anthonypauwels\\DataLayer\\Laravel\\DataLayer"
+            }
+        }
+    }
+}
