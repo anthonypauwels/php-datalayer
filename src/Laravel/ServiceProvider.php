@@ -12,7 +12,7 @@ use Illuminate\Support\ServiceProvider as BaseServiceProvider;
  * @package Anthonypauwels\DataLayer
  * @author Anthony Pauwels <hello@anthonypauwels.be>
  */
-class ServiceProvider extends ServiceProvider
+class ServiceProvider extends BaseServiceProvider
 {
     /**
      * Register the DataLayer
