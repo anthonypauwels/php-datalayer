@@ -16,9 +16,9 @@ use Anthonypauwels\DataLayer\DataLayerHandler;
  * @method static DataLayerHandler pushArray($data, $options = ['echo' => false, 'session' => false])
  * @method static DataLayerHandler publish($options = ['init' => true, 'script' => true])
  * @method static DataLayerHandler init()
- * @method static DataLayerHandler script($google_id = null)
+ * @method static DataLayerHandler script($gtm_id = null)
  * @method static DataLayerHandler scriptPush(array $data)
- * @method static DataLayerHandler noScript($google_id = null)
+ * @method static DataLayerHandler noScript($gtm_id = null)
  * @method static DataLayerHandler dd()
  *
  * @package Anthonypauwels\DataLayer

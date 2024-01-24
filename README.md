@@ -21,7 +21,14 @@ Then add this line to your facades in `config/app.php` :
 'DataLayer' => Anthonypauwels\DataLayer\Laravel\DataLayer::class,
 ```
 
-Finally, add this `GOOGLE_ID=YOUR_GOOGLE_ID` at the end of your .env file.
+Finally, add your GTM-ID in `config/datalayer.php`.
+
+```php
+<?php
+return [
+    'gtm_id' => 'GTM-XXXXXXXX'
+];
+```
 
 ## Usage
 
@@ -35,7 +42,7 @@ use Anthonypauwels\DataLayer\SessionHandler;
 
 $datalayer = new DataLayerHandler( 
                 new SessionHandler(), 
-                'YOUR_GOOGLE_ID'
+                'GTM-XXXXXXXX'
             );
 ```
 
@@ -98,7 +105,7 @@ It will print this entire HTML code in your layout :
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','YOUR_GOOGLE_ID');</script>
+})(window,document,'script','dataLayer','GTM-XXXXXXXX');</script>
 <!-- End Google Tag Manager -->
 ```
 
@@ -111,7 +118,7 @@ DataLayer::noScript();
 It will print the following :
 
 ```html
-<noscript><iframe src="//www.googletagmanager.com/ns.html?id=YOUR_GOOGLE_ID"
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-XXXXXXXX"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 ```
 
@@ -231,10 +238,10 @@ It will print this in the HTML :
 
 #### Print the Google Tag Manager script in the view
 
-The `$google_id` parameter is optional. If omitted, it will use the Google ID set in your .env file.
+The `$gtm_id` parameter is optional. If omitted, it will use the Google ID set in your .env file.
 
 ```php
-DataLayer::script([$google_id = null]);
+DataLayer::script([$gtm_id = null]);
 ```
 
 ```html
@@ -243,18 +250,18 @@ DataLayer::script([$google_id = null]);
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','YOUR_GOOGLE_ID');</script>
+})(window,document,'script','dataLayer','GTM-XXXXXXXX');</script>
 <!-- End Google Tag Manager -->
 ```
 
 Also, do not forget to add the <noscript> tag with.
 
 ```php
-DataLayer::noScript([$google_id = null]);
+DataLayer::noScript([$gtm_id = null]);
 ```
 
 ```html
-<noscript><iframe src="//www.googletagmanager.com/ns.html?id=YOUR_GOOGLE_ID"
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-XXXXXXXX"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 ```
 

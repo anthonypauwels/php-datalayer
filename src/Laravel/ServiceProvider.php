@@ -20,15 +20,15 @@ class ServiceProvider extends BaseServiceProvider
     public function register():void
     {
         $this->app->singleton('datalayer', function ( $app ) {
-            return new DataLayerHandler( new SessionHandler( $app['session'] ), env('GOOGLE_ID') );
+            return new DataLayerHandler( new SessionHandler( $app['session'] ), config('datalayer.gtm_id') );
         } );
 
         Blade::directive('datalayerInit', function () {
             DataLayer::init();
         } );
 
-        Blade::directive('datalayerScript', function (?string $google_id = null) {
-            DataLayer::script( $google_id );
+        Blade::directive('datalayerScript', function (?string $gtm_id = null) {
+            DataLayer::script( $gtm_id );
         } );
 
         Blade::directive('datalayerPush', function (array $data, bool $clear = false) {
@@ -39,9 +39,19 @@ class ServiceProvider extends BaseServiceProvider
             DataLayer::publish( $options );
         } );
 
-        Blade::directive('datalayerNoScript', function (?string $google_id = null) {
-            DataLayer::noScript( $google_id );
+        Blade::directive('datalayerNoScript', function (?string $gtm_id = null) {
+            DataLayer::noScript( $gtm_id );
         } );
+    }
+
+    /**
+     * Bootstrap
+     */
+    public function boot(): void
+    {
+        $this->publishes([
+            __DIR__.'/config.php' => config_path('datalayer.php'),
+        ]);
     }
 
     /**

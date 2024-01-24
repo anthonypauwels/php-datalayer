@@ -16,7 +16,7 @@ class DataLayerHandler
     protected SessionHandlerInterface $session;
 
     /** @var string */
-    protected string $google_id;
+    protected string $gtm_id;
 
     /** @var string */
     const SESSION_KEY = 'datalayer';
@@ -25,12 +25,12 @@ class DataLayerHandler
      * DataLayer constructor.
      *
      * @param SessionHandlerInterface $session
-     * @param string $google_id
+     * @param string $gtm_id
      */
-    public function __construct(SessionHandlerInterface $session, string $google_id)
+    public function __construct(SessionHandlerInterface $session, string $gtm_id)
     {
         $this->session = $session;
-        $this->google_id = $google_id;
+        $this->google_id = $gtm_id;
 
         $this->load();
     }
@@ -163,18 +163,18 @@ class DataLayerHandler
     /**
      * Print the Google tag manager init script with given Google id
      *
-     * @param string|null $google_id
+     * @param string|null $gtm_id
      */
-    public function script(?string $google_id = null):void
+    public function script(?string $gtm_id = null):void
     {
-        $google_id = !$google_id ?: $this->google_id;
+        $gtm_id = !$gtm_id ?: $this->google_id;
 
         ?><!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!=='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','<?= $google_id ?>');</script>
+        })(window,document,'script','dataLayer','<?= $gtm_id ?>');</script>
         <!-- End Google Tag Manager --><?php
     }
 
@@ -198,15 +198,15 @@ class DataLayerHandler
     /**
      * Print the Google tag manager no-script tag with given google id
      *
-     * @param string|null $google_id
+     * @param string|null $gtm_id
      * @return void
      */
-    public function noScript(?string $google_id = null):void
+    public function noScript(?string $gtm_id = null):void
     {
-        $google_id = !$google_id ?: $this->google_id;
+        $gtm_id = !$gtm_id ?: $this->google_id;
 
         ?><!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?= $google_id; ?>" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?= $gtm_id; ?>" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- End Google Tag Manager (noscript) --><?php
     }
 
