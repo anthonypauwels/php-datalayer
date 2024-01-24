@@ -2,8 +2,8 @@
 namespace Anthonypauwels\DataLayer\Laravel;
 
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\ServiceProvider;
 use Anthonypauwels\DataLayer\DataLayerHandler;
+use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 /**
  * ServiceProvider.
@@ -12,7 +12,7 @@ use Anthonypauwels\DataLayer\DataLayerHandler;
  * @package Anthonypauwels\DataLayer
  * @author Anthony Pauwels <hello@anthonypauwels.be>
  */
-class DataLayerProvider extends ServiceProvider
+class ServiceProvider extends ServiceProvider
 {
     /**
      * Register the DataLayer
