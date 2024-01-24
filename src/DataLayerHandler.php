@@ -30,7 +30,7 @@ class DataLayerHandler
     public function __construct(SessionHandlerInterface $session, string $gtm_id)
     {
         $this->session = $session;
-        $this->google_id = $gtm_id;
+        $this->gtm_id = $gtm_id;
 
         $this->load();
     }
@@ -140,7 +140,7 @@ class DataLayerHandler
         }
 
         if ( isset( $options[ 'script' ] ) && $options[ 'script' ] === true ) {
-            $this->script( $this->google_id );
+            $this->script( $this->gtm_id );
         }
     }
 
@@ -167,7 +167,7 @@ class DataLayerHandler
      */
     public function script(?string $gtm_id = null):void
     {
-        $gtm_id = $gtm_id ?: $this->google_id;
+        $gtm_id = $gtm_id ?: $this->gtm_id;
 
         ?><!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -203,7 +203,7 @@ class DataLayerHandler
      */
     public function noScript(?string $gtm_id = null):void
     {
-        $gtm_id = $gtm_id ?: $this->google_id;
+        $gtm_id = $gtm_id ?: $this->gtm_id;
 
         ?><!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?= $gtm_id; ?>" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
